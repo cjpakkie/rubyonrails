@@ -1,0 +1,44 @@
+rails new dojo_ninjas
+rails g model Dojo name:string state:string city:string
+rake db:migrate
+rails g model Ninja first_name:string last_name:string dojo:references
+rake db:migrate
+Dojo.create(name:"CodingDojo Silicon Valley", state:"CA", city:"Mountain View")
+Dojo.create(name:"CodingDojo Seattle", state:"WA", city:"Seattle")
+Dojo.create(name:"CodingDojo New York", state:"NY")
+
+validates :name, :city, :state, presence:true,
+validates :state, length { is: 2 }
+
+validates :first_name, :last_name, presence:true
+
+Dojo.where(id:0..3).destroy_all
+
+dojo4 = Dojo.new(name:"CodingDojo Mars", city="MarsMars")
+dojo4.valid?
+dojo4.errors.full_messages
+dojo5 = Dojo.new(city:"Blah")
+dojo5.valid?
+dojo5.errors.full_messages
+
+Dojo.first.ninjas.create(first_name:"Chris", last_name:"Pak")
+Dojo.first.ninjas.create(first_name:"John", last_name:"Kim")
+Dojo.first.ninjas.create(first_name:"David", last_name:"Lee")
+
+Dojo.find(7).ninjas.create(first_name:"Jack", last_name:"Bauer")
+Dojo.find(7).ninjas.create(first_name:"Tony", last_name:"Stark")
+Dojo.find(7).ninjas.create(first_name:"Steve", last_name:"Rogers")
+
+Dojo.last.ninjas.create(first_name:"Buster", last_name:"Posey")
+Dojo.last.ninjas.create(first_name:"Joe", last_name:"Thornton")
+Dojo.last.ninjas.create(first_name:"Joe", last_name:"Pavelski")
+
+Dojo.first.ninjas
+  or Dojo.find(6).ninjas
+Dojo.find(7).ninjas
+Dojo.last.ninjas
+  or Dojo.find(8).ninjas
+
+Dojo.find(8).ninjas.select("id", "first_name", "dojo_id").order(first_name: :desc)
+
+Dojo.find(8).destroy

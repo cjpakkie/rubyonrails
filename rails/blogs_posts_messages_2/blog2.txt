@@ -1,0 +1,69 @@
+rails new blogs_posts_messages_2
+bundle install
+rails g model User first_name:string last_name:string email_address:string
+rake db:migrate
+rails g model Owner first_name:string last_name:string email_address:string
+rake db:migrate
+rails g model Owner user:references blog:references
+rake db:migrate
+rails g model  Message author:string message:text user:references post:references
+rake db:migrate
+rails g model Post title:string content:text user:references blog:references
+rake db:migrate
+
+rails c
+reload!
+user1 = User.new(first_name:"John", last_name:"Smith", email_address:"John@Smith.com")
+user1.valid?
+user1.save
+
+User.create(first_name:"Jack", last_name:"Black", email_address:"Jack@Black.com")
+User.create(first_name:"Jane", last_name:"Doe", email_address:"Jane@Doe.com")
+User.create(first_name:"Joe", last_name:"Cool", email_address:"Joe@Cool.com")
+User.create(first_name:"Charlie", last_name:"Brown", email_address:"Charlie@Peanuts.com")
+
+blog1 = Blog.new(name:"Hockey", description:"Hockey blog on the NHL")
+blog1.valid?
+blog1.save
+
+Blog.create(name:"Overwatch", description:"The world could use more heroes")
+Blog.create(name:"Pokemon", description:"Wonderful world of Pokemon")
+Blog.create(name:"Paintball", description:"Fact paced and in your face")
+Blog.create(name:"Kidney Transplant", description:"Everything about kidney transplant")
+
+
+Blog.find(1).owners.create(user:User.first)
+Blog.find(2).owners.create(user:User.first)
+Blog.find(3).owners.create(user:User.first)
+
+Blog.find(4).owners.create(user:User.find(2))
+
+Blog.last.owners.create(user:User.last)
+
+Blog.all.each{|b| Owner.create(user:User.find(3), blog:b)}
+
+Post.create(blog:Blog.find(2), user:User.first, title:"Blah Blah Post", content:"More blah blah")
+Post.create(blog:Blog.find(2), user:User.first, title:"Blah Blah Post3", content:"More blah blah3")
+
+Message.create(post:Post.first, user:User.find(3), author:"Random Guy", message:"Just a random message")
+Message.create(post:Post.first, user:User.find(3), author:"Random Guy", message:"Just another random message")
+Message.create(post:Post.find(2), user:User.find(3), author:"Random Guy", message:"Yet another random message")
+Message.create(post:Post.find(2), user:User.find(3), author:"Random Guy", message:"Yup another one")
+Message.create(post:Post.find(2), user:User.find(3), author:"Random Guy", message:"DJ Khalid: Another one")
+
+Message.create(post:Post.last, user:User.find(4), author:"Some Girl", message:"Uptown")
+Message.create(post:Post.last, user:User.find(4), author:"Some Girl", message:"Girl")
+Message.create(post:Post.last, user:User.find(4), author:"Some Girl", message:"She's a livin")
+
+Post.find(2).update(user:User.last)
+Post.find(2).update(content:"This is updated")
+User.find(3).blogs
+User.find(3).posts
+User.find(3).messages
+
+Blog.first.posts.select('posts.*, users.*').joins(:user)
+
+Blog.first.messages.select('messages.*, users.*').joins(:user)
+
+Blog.first.users
+Owner.find_by(blog:Blog.first, user:User.first).destroy

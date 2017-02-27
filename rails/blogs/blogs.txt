@@ -1,0 +1,59 @@
+rails new blogs
+cd blogs
+bundle install
+rails g model Blog name:string description:text
+rake db:migrate
+rails g model Post title:string content:text blog:references
+rake db:migrate
+rails g model Message author:string message:text post:references
+rake db:migrate
+reload!
+
+blog1 = Blog.new(name:"Hockey", description:"Blog about hockey")
+blog1.valid?
+blog1.save
+blog2 = Blog.new(name:"Overwatch", description:"Blog on all things Overwatch")
+blog2.valid?
+blog2.save
+blog3 = Blog.new(name:"Bliss", description:"All things Bob Ross")
+blog3.valid?
+blog3.save
+blog4 = Blog.new(name:"Trappist-1", description:"New system with Goldilocks planets")
+blog4.valid?
+blog4.save
+blog5 = Blog.new(name:"Perpetual Dream", description:"How can mirrors be real if our eyes aren't real?")
+blog5.valid?
+blog5.save
+
+Blog.first.posts.create(title:"Joe Thornton", content:"Joe Thornton should be in the hall of fame")
+Blog.first.posts.create(title:"LA Kings", content:"Worst team in the NHL")
+Blog.first.posts.create(title:"San Jose Sharks", content:"#1 in Power Rankings")
+
+Blog.find(2).posts.create(title:"Winston", content:"Why does he love peanut butter?")
+Blog.find(2).posts.create(title:"Reaper aka Gabriel", content:"Biggest edgelord of them all")
+Blog.find(2).posts.create(title:"Push Payload 101", content:"Stay on the freaking payload")
+
+Blog.find(3).posts.create(title:"Are these happy trees?", content:"I cannot tell if these trees I made are happy")
+Blog.find(3).posts.create(title:"Bob Ross is on Twitch", content:"This is the greatest day of my life")
+Blog.find(3).posts.create(title:"This guy had a Bob Ross party", content:"San Diego man has Bob Ross party. It was the best idea ever")
+
+Blog.find(4).posts.create(title:"Aliens in Trappist-1", content:"I totally believe there are aliens in that system")
+Blog.find(4).posts.create(title:"I volunteer", content:"Put me in cryofreeze and send me there")
+Blog.find(4).posts.create(title:"Food for Thought", content:"I wonder if those aliens taste good")
+
+Blog.last.posts.create(title:"Jayden Smith", content:"This kid is my hero")
+Blog.last.posts.create(title:"Will Smith", content:"His dad is cool but his kid is crazy")
+Blog.last.posts.create(title:"Green Day", content:"Wake me up when September ends ok?")
+
+Post.first.messages.create(author:"Joe Pavelski", message:"He is the greatest passer ever. He is also very hairy")
+Post.first.messages.create(author:"Brent Burns", message:"He has a pretty sick beard. Mine is cooler but his comes close")
+Post.first.messages.create(author:"Tomas Hertl", message:"I'm very scared that one day he will score 4 goals...I don't want to look")
+
+Blog.last.posts.order(title: :desc)
+Post.first.update(title:"Jumbo Joe")
+
+Post.find(3).destroy
+
+Blog.all
+
+Blog.all.where("id < ?", 5)

@@ -1,0 +1,27 @@
+rails new user_login_project
+bundle install
+rails g model user first_name:string last_name:string email:string password:string age:integer
+rake db:migrate
+rails c
+User.create(first_name:"Jack", last_name:"Bauer", email:"24@24.com", age:35)
+User.all
+Hirb.enable
+User.all
+User.update(1, password: "dammit")
+User.create(first_name:"Winston", last_name:"Scientist", email:"overwatch@overwatch.com", password:"peanutbutter", age:26)
+User.create(first_name:"Felix", last_name:"Lutz", email:"cleanup@westworld.com", password:"maeve", age:29)
+reload!
+shoop = User.new
+shoop.save
+shoop.errors
+shoop.errors.full_messages
+
+user2 = User.new(first_name:"C", last_name:"Pak", email:"1234@2841.com", password:"2123", age:200)
+user2.save
+user2.errors.full_messages
+User.all
+User.first
+User.last
+User.order(first_name: :desc)
+User.update(3, last_name: "Putz")
+User.find(2).destroy
