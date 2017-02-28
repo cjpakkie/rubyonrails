@@ -1,0 +1,7 @@
+One of the gems we like to use especially when you're learning Rails is a gem called rails-footnotes. This will make it easier for you to see what's in the session/post data as well as find out what queries are being run behind the scene. You can enable rails-footnotes by adding the following in your gem file:
+
+gem 'rails-footnotes', '>= 4.0.0', '<5'
+After running 'bundle install' make sure you run the following to install the appropriate files/dependencies.
+
+rails generate rails_footnotes:install
+Once you start the rails server (rails s in the terminal), you'll see extra information on the bottom to help you with the debugging process.

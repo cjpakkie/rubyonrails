@@ -2,14 +2,8 @@
 
 one:
   name: MyString
-  price: MyString
-  float: MyString
   description: MyText
-  user: one
 
 two:
   name: MyString
-  price: MyString
-  float: MyString
   description: MyText
-  user: two
