@@ -1,0 +1,29 @@
+<div class="container">
+  <form class="" action="surveys/submit" method="post">
+    <% if @errors
+      @errors.each do |error| %>
+      <p class="message">
+        <%= error %>
+      </p>
+      <%end%>
+    <% end %>
+    <input class="form" name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+    <label class="label" for="">Your Name: </label>
+    <input class="form" type="text" name="dojo[name]" value="">
+    <label class="label" for="">Dojo Location:</label>
+    <select class="form" name="dojo[location]">
+        <option>San Jose</option>
+        <option>Seattle</option>
+        <<option>New York</option>
+    </select>
+    <label class="label" for="">Favorite Language</label>
+    <select class="form" class="" name="dojo[language]">
+        <option>JavaScript</option>
+        <option>Ruby</option>
+        <option>Python</option>
+        <option>PHP</option>
+    </select>
+    <label class="label">Comments (Optional):</label><textarea class="textbox" rows='6' cols='40' name ='dojo[comment]'></textarea>
+    <input class="form" class="submit" type="submit" name="" value="Submit">
+  </form>
+</div>

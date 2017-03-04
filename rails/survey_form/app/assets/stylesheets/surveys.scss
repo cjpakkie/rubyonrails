@@ -1,0 +1,33 @@
+// Place all the styles related to the Surveys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+*{
+  margin: 0 auto;
+  padding: 0;
+}
+
+.container{
+  border: black solid 1px;
+  padding: 30px 20px;
+  width: 300px;
+}
+
+.label{
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.form{
+  display: inline;
+  float: right;
+  clear: both;
+  margin-bottom: 20px;
+}
+
+.textbox{
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+}
