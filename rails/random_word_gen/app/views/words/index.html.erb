@@ -1,0 +1,7 @@
+<h3>Random Word (attempt # <%= @count %>)</h3>
+<h1><%= @word %></h1>
+<a href="/">Generate</a>
+<form class="" action="/words/clear" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="submit" name="" value="Clear Attempts">
+</form>
