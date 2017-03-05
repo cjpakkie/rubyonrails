@@ -1,5 +1,5 @@
 class WordsController < ApplicationController
-  @@count = 1
+  @@count = 0
   def index
     session[:count] = @@count
     @count = session[:count]
@@ -8,7 +8,7 @@ class WordsController < ApplicationController
   end
 
   def clear
-    @@count = 1
+    @@count = 0
     redirect_to "/"
   end
 end
