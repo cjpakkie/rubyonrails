@@ -1,0 +1,65 @@
+<h1>Ninja Gold</h1>
+
+<p>Your Gold! <span> <%= session[:gold] %></span></p>
+<form class="" action="/reset" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="submit" name="" value="Restart Game">
+</form>
+<div class="container">
+  <div id="locations">
+    <div class="farm">
+      <p>Farm</p>
+      <p>(Earns 10-20 gold)</p>
+      <form class="" action="/calculate" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="hidden" name="building" value="farm">
+        <input type="submit" name="" value="Find Gold">
+      </form>
+    </div>
+
+    <div class="cave">
+      <p>Cave</p>
+      <p>(Earns 5-10 gold)</p>
+      <form class="" action="/calculate" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="hidden" name="building" value="cave">
+        <input type="submit" name="" value="Find Gold">
+      </form>
+    </div>
+
+    <div class="House">
+      <p>House</p>
+      <p>(Earns 2-5 gold)</p>
+      <form class="" action="/calculate" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="hidden" name="building" value="house">
+        <input type="submit" name="" value="Find Gold">
+        </ul>
+      </form>
+    </div>
+
+    <div class="Casino">
+      <p>Casino</p>
+      <p>(Earns/Takes 0-50 gold)</p>
+      <form class="" action="/calculate" method="post">
+        <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+        <input type="hidden" name="building" value="casino">
+        <input type="submit" name="" value="Find Gold">
+      </form>
+    </div>
+  </div>
+  <div class="activities">
+    <p>Activities</p>
+    <div class="log">
+      <% if @messages %>
+        <% @messages.each do |x| %>
+          <% if x.include?("earned") %>
+            <p class="earned"><%= x %></p>
+          <% else %>
+            <p class="lost"><%= x %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
