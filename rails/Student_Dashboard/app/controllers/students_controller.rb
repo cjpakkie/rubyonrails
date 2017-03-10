@@ -35,7 +35,7 @@ class StudentsController < ApplicationController
   end
 
   def destroy
-    Student.find(params[:id])
+    Student.find(params[:id]).destroy
     redirect_to :root
   end
 
