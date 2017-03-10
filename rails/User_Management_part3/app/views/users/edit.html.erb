@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Editing</title>
+  </head>
+  <body>
+    <h2>Editing User</h2>
+    <% if @errors %>
+      <% @errors.each do |error| %>
+      <p><%= error %></p>
+      <% end %>
+    <% end %>
+    <form class="" action="/users/<%=@user.id %>" method="POST">
+      <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+      <input type="hidden" name="_method" value="patch">
+      <label for="first_name">First Name</label>
+      <input type="text" name="user[first_name]" >
+      <label for="last_name">Last Name</label>
+      <input type="text" name="user[last_name]" >
+      <label for="Email">Email</label>
+      <input type="email" name="user[email]" >
+      <label for="password">Password</label>
+      <input type="password" name="user[password]" >
+      <input type="submit" name="" value="Update">
+    </form>
+    <a href="/users">Back</a>
+  </body>
+</html>

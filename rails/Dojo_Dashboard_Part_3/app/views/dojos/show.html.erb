@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Showing Dojo <%= @dojos %></title>
+  </head>
+  <body>
+    <h1>This is <%= @dojos.branch %></h1>
+    <%= flash[:notice] %>
+    <h2>Location</h2>
+    <p>Street: <%= @dojos.street %></p>
+    <p>City: <%= @dojos.city %></p>
+    <p>State: <%= @dojos.state %></p>
+
+    <a href="/dojos/<%= @dojos.id %>/edit">Edit</a>  |  <a href="/dojos">Back</a>
+  </body>
+</html>

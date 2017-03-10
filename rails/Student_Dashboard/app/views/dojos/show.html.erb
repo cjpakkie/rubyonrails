@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Showing Dojo <%= @dojos %> </title>
+  </head>
+  <body>
+    <h1><%= @dojos.city %> Dojo <a href="/dojos/<%= @dojos.id %>/edit">Edit</a></h1>
+    <%= flash[:notice] %>
+    <p>Address: <%= @dojos.street %> <%= @dojos.city %>, <%= @dojos.state %></p>
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students.each do |student| %>
+        <tr>
+          <td><%= student.first_name%> </td>
+          <td><%= student.last_name%></td>
+          <td><%= student.email%></td>
+          <td>
+            <a href="/dojos/<%=@dojos.id%>/students/<%=student.id%>">Show</a>
+            <a href="/dojos/<%=@dojos.id%>/students/<%=student.id%>/edit">Edit</a>
+            <form class="" action="/dojos/<%=@dojos.id%>/students/<%=student.id%>" method="post">
+              <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+              <input type="hidden" name="_method" value="delete">
+              <input type="submit" name="" value="Delete">
+            </form>
+          </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+    <a href="/dojos">Home</a>  | <a href="/dojos/<%=@dojos.id%>/students/new">Add a Student</a>
+  </body>
+</html>

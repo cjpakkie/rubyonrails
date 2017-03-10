@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Showing User</title>
+  </head>
+  <body>
+    <h2>Hello <%= @user.first_name %> </h2>
+    <p>First Name: <%= @user.first_name %></p>
+    <p>Last Name: <%= @user.last_name %></p>
+    <p>Email: <%= @user.email %></p>
+
+    <a href="/users/<%= @user.id %>/edit">Edit</a>  |  <a href="/users">Back</a>
+  </body>
+</html>
